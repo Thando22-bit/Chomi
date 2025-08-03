@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-/// ✅ Simple native ad style that looks like a post
+
 class ListTileNativeAdFactory extends NativeAdFactory {
   @override
   Widget createNativeAd(NativeAd ad, {Key? key}) {
@@ -17,7 +17,7 @@ class ListTileNativeAdFactory extends NativeAdFactory {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ✅ Ad headline
+        
           Text(
             ad.headline ?? "Sponsored",
             style: const TextStyle(
@@ -27,7 +27,7 @@ class ListTileNativeAdFactory extends NativeAdFactory {
           ),
           const SizedBox(height: 6),
 
-          // ✅ Ad body
+         
           if (ad.body != null)
             Text(
               ad.body!,
@@ -50,7 +50,7 @@ class ListTileNativeAdFactory extends NativeAdFactory {
                 ),
               const SizedBox(width: 10),
 
-              // ✅ Call-to-action button
+              
               if (ad.callToAction != null)
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(

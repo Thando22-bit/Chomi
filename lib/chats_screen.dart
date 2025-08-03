@@ -1,5 +1,3 @@
-// ✅ Full ChatsScreen.dart — Voice Notes, Edit, Delete-for-me, Delete-for-all
-
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,7 +41,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   bool isBlocked = false;
   bool isOtherBlocked = false;
 
-  final player = AudioPlayer(); // ✅ Single audio player
+  final player = AudioPlayer(); // Single audio player
   String? currentlyPlayingId;
 
   String _chatId() {

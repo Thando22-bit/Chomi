@@ -17,7 +17,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
   bool isLoading = true;
   DateTime? lastWithdrawal;
 
-  // ✅ New Balanced System
+  
   double get totalPoints =>
       (totalLikes * 1) + (totalViews * 0.1) + (totalComments * 2);
   double get totalEarnings => totalPoints / 1000; // 1000 pts = R1
@@ -150,7 +150,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
                 children: [
                   const SizedBox(height: 15),
 
-                  // 🟢 Big Balance Card
+                  // Big Balance Card
                   Card(
                     elevation: 3,
                     shape: RoundedRectangleBorder(
@@ -179,7 +179,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
 
                   const SizedBox(height: 20),
 
-                  // 🟠 Info Card
+                  //  Info Card
                   Card(
                     elevation: 2,
                     child: Column(
@@ -196,7 +196,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
 
                   const SizedBox(height: 25),
 
-                  // 🟡 Withdraw Button
+                  //  Withdraw Button
                   ElevatedButton.icon(
                     onPressed: _handleWithdraw,
                     icon: const Icon(Icons.money),
@@ -210,7 +210,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  // 🔄 Refresh Button
+                  //  Refresh Button
                   ElevatedButton.icon(
                     onPressed: _loadData,
                     icon: const Icon(Icons.refresh),
@@ -224,7 +224,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
                   ),
                   const SizedBox(height: 12),
 
-                  // 🏦 Bank Button
+                  //  Bank Button
                   ElevatedButton.icon(
                     onPressed: () {
                       Navigator.push(

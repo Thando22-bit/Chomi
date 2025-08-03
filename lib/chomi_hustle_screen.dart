@@ -158,7 +158,7 @@ class _ChomiHustleScreenState extends State<ChomiHustleScreen> {
 
                 var docs = snapshot.data!.docs;
 
-                // ✅ Apply search filter
+                //  Apply search filter
                 if (searchQuery.isNotEmpty) {
                   docs = docs.where((doc) {
                     final data = doc.data() as Map<String, dynamic>;

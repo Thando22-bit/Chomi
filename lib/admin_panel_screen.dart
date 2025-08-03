@@ -69,7 +69,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
       'message': message,
       'fromUserId': 'admin',
       'fromUsername': 'Admin',
-      'fromProfileImage': '', // optional: replace with app logo URL
+      'fromProfileImage': '', 
       'timestamp': FieldValue.serverTimestamp(),
       'isNew': true,
     });

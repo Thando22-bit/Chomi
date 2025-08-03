@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  bool _isDarkMode = true; // ✅ Default to dark mode
+  bool _isDarkMode = true; // Default to dark mode
 
   bool get isDarkMode => _isDarkMode;
 
@@ -21,7 +21,7 @@ class ThemeProvider extends ChangeNotifier {
     final doc = await docRef.get();
 
     if (!doc.exists || !doc.data()!.containsKey('darkMode')) {
-      // ✅ Set default darkMode = true for first-time users
+      //  Set default darkMode = true for first-time users
       await docRef.set({'darkMode': true}, SetOptions(merge: true));
       _isDarkMode = true;
     } else {

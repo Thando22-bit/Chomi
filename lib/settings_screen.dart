@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'theme_provider.dart'; // Don't forget this!
+import 'theme_provider.dart'; 
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:uuid/uuid.dart';
-import 'live_stream_screen.dart'; // Import the streamer screen
+import 'live_stream_screen.dart'; 
 
 class GoLiveScreen extends StatefulWidget {
   const GoLiveScreen({super.key});

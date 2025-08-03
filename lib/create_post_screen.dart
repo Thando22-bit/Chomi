@@ -65,7 +65,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
     List<String> imageUrls = [];
     List<String> thumbnailUrls = [];
 
-    // 🔥 Get verified status from user document
+    //  Get verified status from user document
     final userDoc = await FirebaseFirestore.instance
         .collection('users')
         .doc(user!.uid)

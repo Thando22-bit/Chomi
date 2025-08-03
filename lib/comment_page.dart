@@ -107,7 +107,7 @@ class _CommentPageState extends State<CommentPage> {
           .update({'unreadNotifications': FieldValue.increment(1)});
     }
 
-    // ✅ Tagging logic
+    //  Tagging logic
     final RegExp tagPattern = RegExp(r'@(\w+)');
     final matches = tagPattern.allMatches(text);
     for (var match in matches) {
@@ -180,7 +180,7 @@ class _CommentPageState extends State<CommentPage> {
     await ref.delete();
   }
 
-  // ✅ FIXED highlight for tags only
+  // FIXED highlight for tags only
   List<TextSpan> _buildCommentTextSpans(String text) {
     final regex = RegExp(r'@[\w]+'); // detect @username
     final spans = <TextSpan>[];

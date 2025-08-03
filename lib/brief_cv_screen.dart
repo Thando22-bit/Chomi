@@ -35,7 +35,7 @@ class _BriefCVScreenState extends State<BriefCVScreen> {
         'objective': _objectiveController.text.trim(),
         'skills': _skillsController.text.trim(),
         'education': _educationController.text.trim(),
-        'experience': '', // Reserved for future if needed
+        'experience': '', // Reserved for future 
         'phone': _phoneController.text.trim(),
         'email': _emailController.text.trim(),
         'address': _addressController.text.trim(),

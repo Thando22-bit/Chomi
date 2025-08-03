@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: Provider.of<ThemeProvider>(context).themeMode,
-      home: const SplashScreen(), // ✅ Start at splash
+      home: const SplashScreen(), //  Start at splash
       routes: {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
@@ -123,7 +123,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// ✅ Minimal SplashScreen
+///  Minimal SplashScreen
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -174,12 +174,12 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // ✅ White background
+      backgroundColor: Colors.white, //  White background
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Image.asset(
-            'assets/avatar.png', // ✅ Your logo
+            'assets/avatar.png', 
             width: 140,
             height: 140,
           ),
