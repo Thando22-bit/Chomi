@@ -1,16 +1,36 @@
-# chomi_app
+# 📱 Chomi
 
-A new Flutter project.
+**Chomi** is a social media app built with **Flutter** and **Firebase**.  
+It helps users **connect, chat, share posts, and hustle** in a fun and engaging way.    
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
+- 🔐 **User Authentication** (Login & Register with Firebase)
+- 💬 **Real-time Chat** (text, images, and voice notes with waveform UI)
+- 📸 **Post Photos & Videos**
+- 👍 **Likes & Comments**
+- 🔔 **In-app Notifications**
+- 🕶 **Dark Mode Support**
+- 💼 **Hustle Section** (job posting & adverts)
+- 🎥 **Live Streaming** (planned feature)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Tech Stack
+- **Flutter (Dart)**
+- **Firebase Authentication**
+- **Firebase Firestore**
+- **Firebase Storage**
+- **Provider (state management)**
+
+---
+
+
+
+
+
+
+
+
