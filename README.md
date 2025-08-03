@@ -27,7 +27,9 @@ It helps users **connect, chat, share posts, and hustle** in a fun and engaging 
 
 ---
 
-
+# Author
+Sibusiso Matukane
+sbusisothando67@gmail.com
 
 
 
