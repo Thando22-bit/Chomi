@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "588365046744",
+    "project_id": "chomi-social",
+    "storage_bucket": "chomi-social.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588365046744:android:c59feae02bc357267708ad",
+        "android_client_info": {
+          "package_name": "com.example.chomi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyyVHS3YHK8kyLgRC6Wxzcw40k3TEJemI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
