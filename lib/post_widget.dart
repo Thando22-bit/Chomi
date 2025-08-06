@@ -293,175 +293,188 @@ class _PostWidgetState extends State<PostWidget> with AutomaticKeepAliveClientMi
     final String uid = widget.postData['uid'] ?? '';
     final likes = widget.postData['likes'] ?? [];
 
-    return GestureDetector(
-      onTap: _trackViewDuration,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: isDark ? theme.cardColor : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: isDark ? [] : [BoxShadow(color: Colors.black12, blurRadius: 5)],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: _trackViewDuration,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2), // 🔥 Reduced vertical spacing
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: isDark ? theme.cardColor : Colors.white,
+              borderRadius: BorderRadius.circular(8), // slightly tighter
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => UserInfoScreen(userId: uid)),
-                  ),
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: profileImageUrl.isNotEmpty
-                        ? NetworkImage(profileImageUrl)
-                        : const AssetImage('assets/default_avatar.png') as ImageProvider,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => UserInfoScreen(userId: uid)),
+                      ),
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundImage: profileImageUrl.isNotEmpty
+                            ? NetworkImage(profileImageUrl)
+                            : const AssetImage('assets/default_avatar.png') as ImageProvider,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            username,
-                            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              Text(
+                                username,
+                                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(width: 4),
+                              if (widget.postData['verified'] == true)
+                                const Icon(Icons.verified, color: Color(0xFFFFD700), size: 18),
+                            ],
                           ),
-                          const SizedBox(width: 4),
-                          if (widget.postData['verified'] == true)
-                            const Icon(Icons.verified, color: Color(0xFFFFD700), size: 18),
+                          Text(
+                            DateFormat.yMMMd().add_jm().format(timestamp.toDate()),
+                            style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
+                          ),
                         ],
                       ),
-                      Text(
-                        DateFormat.yMMMd().add_jm().format(timestamp.toDate()),
-                        style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-                if (showFollowButton)
-                  ElevatedButton(
-                    onPressed: _followUser,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     ),
-                    child: const Text('+', style: TextStyle(color: Colors.white)),
-                  ),
-                if (uid == currentUser?.uid)
-                  PopupMenuButton<String>(
-                    onSelected: (value) {
-                      if (value == 'delete') _deletePost();
-                      if (value == 'update') _updatePostCaption();
-                    },
-                    itemBuilder: (context) => [
-                      const PopupMenuItem(value: 'update', child: Text('Edit')),
-                      const PopupMenuItem(value: 'delete', child: Text('Delete')),
-                    ],
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            if (caption.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(caption, style: theme.textTheme.bodyLarge),
-              ),
-            if (imageUrls.isNotEmpty)
-              Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: AspectRatio(
-                      aspectRatio: 3 / 4,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: imageUrls.length,
-                        onPageChanged: (index) => setState(() => _currentImageIndex = index),
-                        itemBuilder: (context, index) {
-                          final imageUrl = imageUrls[index];
-                          return GestureDetector(
-                            onTap: () => openFullScreenGallery(index, imageUrls),
-                            child: CachedNetworkImage(
-                              imageUrl: imageUrl,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              fadeInDuration: const Duration(milliseconds: 100),
-                              placeholder: (context, url) =>
-                                  const Center(child: CircularProgressIndicator(strokeWidth: 1.5)),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  if (imageUrls.length > 1)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: SmoothPageIndicator(
-                        controller: _pageController,
-                        count: imageUrls.length,
-                        effect: const WormEffect(
-                          dotHeight: 6,
-                          dotWidth: 6,
-                          spacing: 6,
-                          activeDotColor: Colors.orange,
-                          dotColor: Colors.grey,
+                    if (showFollowButton)
+                      ElevatedButton(
+                        onPressed: _followUser,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          'Follow',
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    ),
-                ],
-              ),
-            if (videoUrl.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.black,
-                    child: VideoPlayerWidget(videoUrl: videoUrl),
-                  ),
-                ),
-              ),
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    isLiked ? Icons.favorite : Icons.favorite_border,
-                    color: isLiked ? Colors.red : theme.iconTheme.color,
-                  ),
-                  onPressed: _toggleLike,
-                ),
-                Text('${likes.length}', style: theme.textTheme.bodyMedium),
-                const SizedBox(width: 16),
-                IconButton(
-                  icon: const Icon(Icons.comment_outlined),
-                  color: theme.iconTheme.color,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => CommentPage(postId: widget.postId),
+                    if (uid == currentUser?.uid)
+                      PopupMenuButton<String>(
+                        onSelected: (value) {
+                          if (value == 'delete') _deletePost();
+                          if (value == 'update') _updatePostCaption();
+                        },
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(value: 'update', child: Text('Edit')),
+                          const PopupMenuItem(value: 'delete', child: Text('Delete')),
+                        ],
                       ),
-                    );
-                  },
+                  ],
                 ),
-                Text('$commentCount', style: theme.textTheme.bodyMedium),
+                const SizedBox(height: 10),
+                if (caption.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      caption,
+                      style: theme.textTheme.bodyLarge?.copyWith(fontSize: 17), // 🔥 Bigger text font
+                    ),
+                  ),
+                if (imageUrls.isNotEmpty)
+                  Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: AspectRatio(
+                          aspectRatio: 3 / 4,
+                          child: PageView.builder(
+                            controller: _pageController,
+                            itemCount: imageUrls.length,
+                            onPageChanged: (index) => setState(() => _currentImageIndex = index),
+                            itemBuilder: (context, index) {
+                              final imageUrl = imageUrls[index];
+                              return GestureDetector(
+                                onTap: () => openFullScreenGallery(index, imageUrls),
+                                child: CachedNetworkImage(
+                                  imageUrl: imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  fadeInDuration: const Duration(milliseconds: 100),
+                                  placeholder: (context, url) =>
+                                      const Center(child: CircularProgressIndicator(strokeWidth: 1.5)),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      if (imageUrls.length > 1)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: SmoothPageIndicator(
+                            controller: _pageController,
+                            count: imageUrls.length,
+                            effect: const WormEffect(
+                              dotHeight: 6,
+                              dotWidth: 6,
+                              spacing: 6,
+                              activeDotColor: Colors.orange,
+                              dotColor: Colors.grey,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                if (videoUrl.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.black,
+                        child: VideoPlayerWidget(videoUrl: videoUrl),
+                      ),
+                    ),
+                  ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        isLiked ? Icons.favorite : Icons.favorite_border,
+                        color: isLiked ? Colors.red : theme.iconTheme.color,
+                      ),
+                      onPressed: _toggleLike,
+                    ),
+                    Text('${likes.length}', style: theme.textTheme.bodyMedium),
+                    const SizedBox(width: 16),
+                    IconButton(
+                      icon: const Icon(Icons.comment_outlined),
+                      color: theme.iconTheme.color,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => CommentPage(postId: widget.postId),
+                          ),
+                        );
+                      },
+                    ),
+                    Text('$commentCount', style: theme.textTheme.bodyMedium),
+                  ],
+                ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
+        // 🔥 Divider line between posts
+        const SizedBox(height: 4),
+      ],
     );
   }
 }
+
 
 
 
